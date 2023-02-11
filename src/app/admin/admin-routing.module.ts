@@ -8,7 +8,7 @@ import {
   ManageUsersComponent
 } from './components';
 
-import { AuthGuard } from './../core';
+import { AuthGuard, authCanActivateChildGuardFn } from './../core';
 
 const routes: Routes = [
   {
@@ -18,7 +18,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        canActivateChild: [AuthGuard],
+        canActivateChild: [authCanActivateChildGuardFn],
         children: [
           { path: 'users', component: ManageUsersComponent },
           { path: 'tasks', component: ManageTasksComponent },
