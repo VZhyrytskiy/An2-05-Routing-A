@@ -12,7 +12,7 @@ const userList: Array<UserModel> = [
 const userListObservable: Observable<Array<UserModel>> = of(userList);
 
 @Injectable({
-  providedIn: 'any'
+  providedIn: 'root'
 })
 export class UserArrayService {
   users$: Observable<UserModel[]> = userListObservable;
