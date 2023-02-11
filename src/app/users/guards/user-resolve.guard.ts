@@ -7,7 +7,7 @@ import { UserArrayService } from './../services/user-array.service';
 import { SpinnerService } from './../../widgets';
 
 @Injectable({
-  providedIn: 'any'
+  providedIn: 'root'
 })
 export class UserResolveGuard implements Resolve<UserModel> {
   constructor(
