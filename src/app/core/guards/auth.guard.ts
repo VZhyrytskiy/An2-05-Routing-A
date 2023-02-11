@@ -21,18 +21,8 @@ export class AuthGuard implements CanActivate {
     | UrlTree {
     console.log('CanActivateGuard is called');
     const { url } = state;
-    return this.checkLogin(url);
-  }
-
-  private checkLogin(url: string): boolean | UrlTree {
-    if (this.authService.isLoggedIn) {
-      return true;
-    }
-
-    // Store the attempted URL for redirecting
-    this.authService.redirectUrl = url;
-
-    // Navigate to the login, return UrlTree
-    return this.router.parseUrl('/login');
+    return this.authService.checkLogin(url)
+      ? true
+      : this.router.parseUrl('/login');
   }
 }
