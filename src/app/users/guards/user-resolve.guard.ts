@@ -9,7 +9,7 @@ import { UserModel } from './../models/user.model';
 import { UserArrayService } from './../services/user-array.service';
 
 @Injectable({
-  providedIn: 'any'
+  providedIn: 'root'
 })
 export class UserResolveGuard implements Resolve<UserModel> {
   constructor(
