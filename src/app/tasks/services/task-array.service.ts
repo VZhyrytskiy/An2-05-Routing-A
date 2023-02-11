@@ -11,7 +11,7 @@ const taskList = [
 const taskListPromise = Promise.resolve(taskList);
 
 @Injectable({
-  providedIn: 'any'
+  providedIn: 'root'
 })
 export class TaskArrayService {
   getTasks(): Promise<TaskModel[]> {
