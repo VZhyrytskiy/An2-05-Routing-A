@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { , Router } from '@angular/router';
+import { Router } from '@angular/router';
 import type { CanActivate, NavigationExtras, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { type Observable } from 'rxjs';
 
