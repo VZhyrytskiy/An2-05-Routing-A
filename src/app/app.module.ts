@@ -12,9 +12,9 @@ import { LayoutModule } from './layout/layout.module';
 import { TasksModule } from './tasks/tasks.module';
 import { UsersModule } from './users/users.module';
 import { AppRoutingModule } from './app-routing.module';
-import { SpinnerModule } from './widgets/spinner/spinner.module';
 
 import { AppComponent } from './app.component';
+import { SpinnerComponent } from './widgets';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +25,7 @@ import { AppComponent } from './app.component';
     TasksModule,
     UsersModule,
     AdminModule,
-    SpinnerModule.forRoot(),
+    SpinnerComponent,
     AppRoutingModule
   ],
   providers: [
