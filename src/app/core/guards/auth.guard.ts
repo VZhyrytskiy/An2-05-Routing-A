@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-<<<<<<< HEAD
-import type { CanActivate, CanActivateChild, ActivatedRouteSnapshot, NavigationExtras, RouterStateSnapshot, UrlTree } from '@angular/router';
-=======
 import type { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
->>>>>>> fix27
 import { type Observable } from 'rxjs';
 
 import { AuthService } from '../services/auth.service';
