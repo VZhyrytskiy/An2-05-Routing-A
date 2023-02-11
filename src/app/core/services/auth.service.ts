@@ -37,5 +37,4 @@ export class AuthService {
     // Navigate to the login, return false
     return false;
   }
-
 }
