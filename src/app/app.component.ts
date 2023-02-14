@@ -1,4 +1,5 @@
 import { Component, type OnInit, type OnDestroy } from '@angular/core';
+import { Meta } from '@angular/platform-browser';
 import { Router, NavigationStart, type RouterOutlet, type Event } from '@angular/router';
 import { filter, type Subscription } from 'rxjs';
 
@@ -17,7 +18,8 @@ export class AppComponent implements OnInit, OnDestroy {
     public messagesService: MessagesService,
     private router: Router,
     public spinnerService: SpinnerService,
-    private preloadingStrategy: CustomPreloadingStrategyService
+    private preloadingStrategy: CustomPreloadingStrategyService,
+    private metaService: Meta
   ) {}
 
   ngOnInit(): void {
@@ -39,6 +41,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   onActivate($event: any, routerOutlet: RouterOutlet): void {
     console.log('Activated Component', $event, routerOutlet);
+    this.metaService.addTags(routerOutlet.activatedRouteData['meta']);
   }
 
   onDeactivate($event: any, routerOutlet: RouterOutlet): void {
