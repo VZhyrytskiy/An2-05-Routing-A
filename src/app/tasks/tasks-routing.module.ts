@@ -7,9 +7,7 @@ const routes: Routes = [
   {
     path: 'home',
     component: TaskListComponent,
-    data: {
-      title: 'Task Manager'
-    }
+    title: 'Task Manager'
   },
   {
     path: 'edit/:taskID',
