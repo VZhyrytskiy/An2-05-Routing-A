@@ -16,7 +16,8 @@ const routes: Routes = [
   {
     path: 'admin',
     canMatch: [canMatchAuthGuard],
-    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+    data: { preload: false }
   },
   {
     path: 'admin',
