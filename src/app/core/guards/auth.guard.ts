@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Route, Router, UrlSegment } from '@angular/router';
-import type { CanActivate, CanLoad, NavigationExtras, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { Router } from '@angular/router';
+import type { CanActivate, NavigationExtras, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { type Observable } from 'rxjs';
 
 import { AuthService } from '../services/auth.service';
@@ -8,7 +8,7 @@ import { AuthService } from '../services/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate, CanLoad {
+export class AuthGuard implements CanActivate {
   constructor(
     private authService: AuthService,
     private router: Router
@@ -41,14 +41,6 @@ export class AuthGuard implements CanActivate, CanLoad {
       this.router.navigate(['/login'], navigationExtras);
       return false;
     }
-  }
-
-  canLoad(route: Route, segments: UrlSegment[]
-    ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    console.log('CanLoad Guard is activated');
-    const url = `/${route.path}`;
-
-    return this.authService.checkLogin(url);
   }
 }
 
