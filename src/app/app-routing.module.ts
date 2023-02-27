@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { type Routes, type ExtraOptions, PreloadAllModules, RouterModule, type UrlSegment, type UrlSegmentGroup, type Route, type UrlMatchResult } from '@angular/router';
 
-import { AuthGuard, CustomPreloadingStrategyService } from './core';
+import { canMatchAuthGuard, CustomPreloadingStrategyService } from './core';
 import { AbcComponent, AboutComponent, LoginComponent, MessagesComponent, PathNotFoundComponent } from './layout';
 
 const routes: Routes = [
@@ -15,8 +15,13 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    canLoad: [AuthGuard],
+    canMatch: [canMatchAuthGuard],
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+  },
+  {
+    path: 'admin',
+    redirectTo: '/login',
+    pathMatch: 'full'
   },
   {
     path: 'users',
