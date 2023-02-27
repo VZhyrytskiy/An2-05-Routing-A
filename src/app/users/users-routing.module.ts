@@ -3,8 +3,8 @@ import { type Routes, RouterModule } from '@angular/router';
 
 import { UsersComponent } from './users.component';
 import { UserListComponent, UserFormComponent } from './components';
-import { UserResolveGuard, EditUserPageTitleResolver } from './guards';
-import { CanDeactivateGuard } from './../core';
+import { canDeactivateGuard } from './../core';
+import { userResolver, editUserPageTitleResolver } from './resolvers';
 
 const routes: Routes = [
   {
@@ -18,10 +18,10 @@ const routes: Routes = [
       {
         path: 'edit/:userID',
         component: UserFormComponent,
-        title: EditUserPageTitleResolver,
-        canDeactivate: [CanDeactivateGuard],
+        title: editUserPageTitleResolver,
+        canDeactivate: [canDeactivateGuard],
         resolve: {
-          user: UserResolveGuard
+          user: userResolver
         }
       },
       {
