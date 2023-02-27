@@ -1,6 +1,6 @@
-export * from './guards/auth.guard';
+export * from './guards/can-activate-auth.guard';
+export * from './guards/can-activate-child-auth.guard';
 export * from './guards/can-deactivate.guard';
-export * from './guards/auth-can-activate-child.guard.fn';
 
 export * from './interfaces/can-component-deactivate.interface';
 
