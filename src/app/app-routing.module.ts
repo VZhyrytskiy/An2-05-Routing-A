@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, type UrlSegment, type UrlSegmentGroup, type Route, type UrlMatchResult } from '@angular/router';
 
-import { AbcComponent, AboutComponent, HomeComponent, PathNotFoundComponent } from './layout';
+import { AbcComponent, AboutComponent, HomeComponent, PathNotFoundComponent } from './pages';
 
 const routes: Routes = [
   {

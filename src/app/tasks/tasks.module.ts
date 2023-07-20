@@ -6,8 +6,8 @@ import { TasksRoutingModule } from './tasks-routing.module';
 import { TaskComponent, TaskListComponent } from './components';
 
 @NgModule({
-  declarations: [TaskListComponent, TaskComponent],
-  imports: [CommonModule, FormsModule, TasksRoutingModule],
-  providers: []
+  declarations: [TaskListComponent],
+  imports: [CommonModule, FormsModule, TasksRoutingModule, TaskComponent],
+  providers: [],
 })
 export class TasksModule {}
