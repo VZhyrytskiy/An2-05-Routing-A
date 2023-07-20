@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { type Routes, type ExtraOptions, PreloadAllModules, RouterModule, type UrlSegment, type UrlSegmentGroup, type Route, type UrlMatchResult } from '@angular/router';
 
+import { AbcComponent, AboutComponent, LoginComponent, PathNotFoundComponent, MessagesComponent } from './pages';
 import { canMatchAuthGuard } from './core';
-import { AbcComponent, AboutComponent, LoginComponent, MessagesComponent, PathNotFoundComponent } from './layout';
 
 const routes: Routes = [
   {
@@ -56,6 +56,7 @@ const routes: Routes = [
 
 const extraOptions: ExtraOptions = {
   preloadingStrategy: PreloadAllModules,
+  bindToComponentInputs: true,
   enableTracing: true  // Makes the router log all its internal events to the console.
 };
 

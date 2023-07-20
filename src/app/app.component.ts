@@ -1,7 +1,5 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import type { RouterOutlet } from '@angular/router';
-
+import { Component, inject } from '@angular/core';
+import { Router, type RouterOutlet } from '@angular/router';
 import { MessagesService } from './core';
 import { SpinnerService } from './widgets';
 
@@ -11,11 +9,9 @@ import { SpinnerService } from './widgets';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(
-    private router: Router,
-    public messagesService: MessagesService,
-    public spinnerService: SpinnerService
-  ) {}
+  messagesService = inject(MessagesService);
+  spinnerService = inject(SpinnerService);
+  private router = inject(Router)
 
   onActivate($event: any, routerOutlet: RouterOutlet): void {
     console.log('Activated Component', $event, routerOutlet);

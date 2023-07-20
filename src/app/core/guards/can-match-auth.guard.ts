@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
-import { Route, UrlSegment, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import type { Route, UrlSegment, UrlTree } from '@angular/router';
+import { type Observable } from 'rxjs';
 import { AuthService } from './../services/auth.service';
 
 export function canMatchAuthGuard(route: Route, segments: UrlSegment[]
