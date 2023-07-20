@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, type UrlSegment, type UrlSegmentGroup, type Route, type UrlMatchResult } from '@angular/router';
 
+import { AbcComponent, AboutComponent, LoginComponent, PathNotFoundComponent, MessagesComponent } from './pages';
 import { canMatchAuthGuard } from './core';
-import { AbcComponent, AboutComponent, LoginComponent, MessagesComponent, PathNotFoundComponent } from './layout';
 
 const routes: Routes = [
   {
@@ -54,7 +54,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, { bindToComponentInputs: true })
+  ],
   // re-export RouterModule in order to have access
   // to its directives in main module.
   exports: [RouterModule]
