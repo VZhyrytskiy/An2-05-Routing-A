@@ -1,10 +1,6 @@
-import { Component,  } from '@angular/core';
-import type { OnInit, OnDestroy } from '@angular/core';
+import { Component, type OnInit, inject, DestroyRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
-// rxjs
 import { Subscription } from 'rxjs';
-
 import { UserModel } from './../../models/user.model';
 import { UserArrayService } from './../../services/user-array.service';
 
@@ -12,17 +8,15 @@ import { UserArrayService } from './../../services/user-array.service';
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.css']
 })
-export class UserFormComponent implements OnInit, OnDestroy {
+export class UserFormComponent implements OnInit {
   user!: UserModel;
   originalUser!: UserModel;
 
   private sub!: Subscription;
-
-  constructor(
-    private userArrayService: UserArrayService,
-    private route: ActivatedRoute,
-    private router: Router
-  ) { }
+  private userArrayService = inject(UserArrayService);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
+  private destroyRef = inject(DestroyRef);
 
   ngOnInit(): void {
     this.user = new UserModel(null, '', '');
@@ -37,21 +31,19 @@ export class UserFormComponent implements OnInit, OnDestroy {
       error: (err: any) => console.log(err)
     };
     this.sub = this.userArrayService.getUser(id).subscribe(observer);
-  }
 
-  ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    // OnDestroy
+    this.destroyRef.onDestroy(() => {
+      console.log('OnDestroy hook of UserForm via DestroyRef');
+      this.sub.unsubscribe();
+    });
   }
 
   onSaveUser(): void {
     const user = { ...this.user };
+    const method = user.id ? 'updateUser' : 'createUser';
 
-    if (user.id) {
-      this.userArrayService.updateUser(user);
-    } else {
-      this.userArrayService.createUser(user);
-    }
-    this.originalUser = {...this.user};
+    this.userArrayService[method](user);
     this.onGoBack();
   }
 
