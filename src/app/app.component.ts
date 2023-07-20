@@ -1,8 +1,7 @@
-import { Component, type OnInit, type OnDestroy } from '@angular/core';
+import { Component, inject, type OnInit, type OnDestroy } from '@angular/core';
+import { Router, type RouterOutlet, NavigationStart, type Event } from '@angular/router';
 import { Meta } from '@angular/platform-browser';
-import { Router, NavigationStart, type RouterOutlet, type Event } from '@angular/router';
-import { filter, type Subscription } from 'rxjs';
-
+import { type Subscription, filter } from 'rxjs';
 import { MessagesService, CustomPreloadingStrategyService } from './core';
 import { SpinnerService } from './widgets';
 
@@ -12,31 +11,21 @@ import { SpinnerService } from './widgets';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
+  messagesService = inject(MessagesService);
+  spinnerService = inject(SpinnerService);
+
+  private router = inject(Router);
+  private preloadingStrategy = inject(CustomPreloadingStrategyService);
+  private metaService = inject(Meta);
   private sub: { [key: string]: Subscription } = {};
 
-  constructor(
-    public messagesService: MessagesService,
-    private router: Router,
-    public spinnerService: SpinnerService,
-    private preloadingStrategy: CustomPreloadingStrategyService,
-    private metaService: Meta
-  ) {}
-
   ngOnInit(): void {
-    console.log(
-      `Preloading Modules: `,
-      this.preloadingStrategy.preloadedModules
-    );
+    console.log(`Preloading Modules: `, this.preloadingStrategy.preloadedModules);
     this.setMessageServiceOnRefresh();
   }
 
   ngOnDestroy(): void {
     this.sub['navigationStart'].unsubscribe();
-  }
-
-  onDisplayMessages(): void {
-    this.router.navigate([{ outlets: { messages: ['messages'] } }]);
-    this.messagesService.isDisplayed = true;
   }
 
   onActivate($event: any, routerOutlet: RouterOutlet): void {
@@ -50,6 +39,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
   onRouterLinkActive($event: boolean): void {
     console.log($event);
+  }
+
+  onDisplayMessages(): void {
+    this.router.navigate([{ outlets: { messages: ['messages'] } }]);
+    this.messagesService.isDisplayed = true;
   }
 
   private setMessageServiceOnRefresh(): void {
