@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { type Routes, RouterModule } from '@angular/router';
-
 import { UsersComponent } from './users.component';
 import { UserListComponent, UserFormComponent } from './components';
-
 import { canDeactivateGuard } from './../core';
 import { userResolver } from './resolvers';
 
@@ -21,7 +19,7 @@ const routes: Routes = [
         component: UserFormComponent,
         canDeactivate: [canDeactivateGuard],
         resolve: {
-          user: userResolver
+          userFromResolver: userResolver
         }
       },
       {
