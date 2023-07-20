@@ -34,7 +34,6 @@ const routes: Routes = [
 })
 export class AdminRoutingModule {
   static components = [
-    AdminComponent,
     AdminDashboardComponent,
     ManageTasksComponent,
     ManageUsersComponent

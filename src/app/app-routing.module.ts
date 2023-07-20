@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, type UrlSegment, type UrlSegmentGroup, type Route, type UrlMatchResult } from '@angular/router';
 
-import { AbcComponent, AboutComponent, LoginComponent, MessagesComponent, PathNotFoundComponent } from './layout';
+import { AbcComponent, AboutComponent, LoginComponent, PathNotFoundComponent, MessagesComponent } from './pages';
 
 const routes: Routes = [
   {
@@ -39,7 +39,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, { bindToComponentInputs: true })
+  ],
   // re-export RouterModule in order to have access
   // to its directives in main module.
   exports: [RouterModule]
