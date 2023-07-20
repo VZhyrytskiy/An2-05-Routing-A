@@ -1,9 +1,5 @@
-import { Component } from '@angular/core';
-import type { OnInit } from '@angular/core';
-
-// rxjs
-import { EMPTY, Observable, catchError } from 'rxjs';
-
+import { Component, inject, type OnInit } from '@angular/core';
+import { EMPTY, type Observable, catchError } from 'rxjs';
 import type { UserModel } from './../../models/user.model';
 import { UserArrayService } from './../../services/user-array.service';
 
@@ -14,9 +10,7 @@ import { UserArrayService } from './../../services/user-array.service';
 export class UserListComponent implements OnInit {
   users$!: Observable<Array<UserModel>>;
 
-  constructor(
-    private userArrayService: UserArrayService,
-  ) { }
+  private userArrayService = inject(UserArrayService);
 
   ngOnInit(): void {
     this.users$ = this.userArrayService.users$
