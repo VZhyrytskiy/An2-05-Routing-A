@@ -11,7 +11,6 @@ export const canActivateAuthGuard: CanActivateFn = (route, state) => {
 
   // Create a dummy session id
   const sessionId = 123456789;
-
   const navigationExtras: NavigationExtras = {
     queryParams: { sessionId },
     fragment: 'anchor'

@@ -7,11 +7,9 @@ import { Router, TitleStrategy } from '@angular/router';
 // index.html and you want to set base tag
 // import { APP_BASE_HREF } from '@angular/common';
 
-import { LayoutModule } from './layout/layout.module';
-import { TasksModule } from './tasks/tasks.module';
-import { AppRoutingModule } from './app-routing.module';
-
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { TasksModule } from './tasks/tasks.module';
 import { SpinnerComponent } from './widgets';
 import { PageTitleStrategy } from './core/services/page-title-strategy.service';
 
@@ -20,10 +18,12 @@ import { PageTitleStrategy } from './core/services/page-title-strategy.service';
   imports: [
     BrowserModule,
     FormsModule,
-    LayoutModule,
     TasksModule,
     SpinnerComponent,
+
+    // MUST BE LAST
     AppRoutingModule
+
   ],
   providers: [
     // add this line if you don't have access to
@@ -36,8 +36,8 @@ import { PageTitleStrategy } from './core/services/page-title-strategy.service';
 export class AppModule {
   // Diagnostic only: inspect router configuration
   constructor(router: Router) {
-    const replacer = (key: string, value: any): string =>
-      typeof value === 'function' ? value.name : value;
+    const replacer = (key: string, value: unknown): string =>
+      typeof value === 'function' ? value.name : (value as string);
 
     console.log('Routes: ', JSON.stringify(router.config, replacer, 2));
   }
