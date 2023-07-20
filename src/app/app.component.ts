@@ -1,6 +1,5 @@
-import { Component, type OnInit } from '@angular/core';
+import { Component, inject, type OnInit } from '@angular/core';
 import { Router, type RouterOutlet } from '@angular/router';
-
 import { MessagesService, CustomPreloadingStrategyService } from './core';
 import { SpinnerService } from './widgets';
 
@@ -10,18 +9,13 @@ import { SpinnerService } from './widgets';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(
-    private router: Router,
-    public messagesService: MessagesService,
-    public spinnerService: SpinnerService,
-    private preloadingStrategy: CustomPreloadingStrategyService
-  ) {}
+  messagesService = inject(MessagesService);
+  spinnerService = inject(SpinnerService);
+  private router = inject(Router);
+  private preloadingStrategy = inject(CustomPreloadingStrategyService);
 
   ngOnInit(): void {
-    console.log(
-      `Preloading Modules: `,
-      this.preloadingStrategy.preloadedModules
-    );
+    console.log(`Preloading Modules: `, this.preloadingStrategy.preloadedModules);
   }
 
   onActivate($event: any, routerOutlet: RouterOutlet): void {
