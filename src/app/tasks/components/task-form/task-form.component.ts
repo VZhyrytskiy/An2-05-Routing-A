@@ -1,5 +1,4 @@
-import { Component, type OnInit } from '@angular/core';
-
+import { Component, inject, type OnInit } from '@angular/core';
 import { TaskModel } from './../../models/task.model';
 import { TaskArrayService } from './../../services/task-array.service';
 
@@ -10,7 +9,7 @@ import { TaskArrayService } from './../../services/task-array.service';
 export class TaskFormComponent implements OnInit {
   task!: TaskModel;
 
-  constructor(private taskArrayService: TaskArrayService) {}
+  private taskArrayService = inject(TaskArrayService);
 
   ngOnInit(): void {
     this.task = new TaskModel();
